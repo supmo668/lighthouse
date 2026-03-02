@@ -20,8 +20,8 @@ venv/
 .vscode/
 .idea/
 
-# Presentation (local only)
-presentation/
+# Claude Code
+.claude/commands/
 
 # OS
 .DS_Store

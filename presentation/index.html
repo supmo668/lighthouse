@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lighthouse — AI-Powered O-1 Visa Onboarding</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <style>
+    :root { --r-heading-color:#1a1a2e; --r-main-color:#333; --r-link-color:#2563eb; }
+    .reveal h1,.reveal h2,.reveal h3 { font-weight:700 }
+    .reveal h1 { font-size:2.2em } .reveal h2 { font-size:1.6em }
+    .reveal h3 { font-size:1.2em; color:#555 }
+    .reveal .small { font-size:0.6em; color:#666 }
+    .reveal .medium { font-size:0.75em }
+    .reveal table { font-size:0.65em; margin:0 auto }
+    .reveal table th { background:#f1f5f9 }
+    .reveal table td,.reveal table th { padding:8px 14px; border:1px solid #e2e8f0 }
+    .reveal pre { font-size:0.55em; box-shadow:none }
+    .reveal code { font-family:'JetBrains Mono','Fira Code',monospace }
+    .reveal .highlight { color:#2563eb; font-weight:600 }
+    .reveal .warn { color:#dc2626 } .reveal .ok { color:#16a34a }
+    .reveal ul { font-size:0.85em }
+    .reveal .two-col { display:flex; gap:40px; text-align:left }
+    .reveal .two-col>div { flex:1 }
+    .reveal .arch-box { background:#f8fafc; border:2px solid #e2e8f0; border-radius:12px; padding:20px; margin:10px 0; font-size:0.7em; text-align:left }
+    .reveal .pill { display:inline-block; padding:4px 12px; border-radius:20px; font-size:0.6em; font-weight:600; margin:2px }
+    .pill-green { background:#dcfce7; color:#166534 }
+    .pill-yellow { background:#fef9c3; color:#854d0e }
+    .pill-red { background:#fecaca; color:#991b1b }
+    .pill-blue { background:#dbeafe; color:#1e40af }
+    .reveal .flow-arrow { font-size:1.5em; color:#94a3b8 }
+    .reveal section { text-align:left }
+    .reveal .center { text-align:center }
+    .reveal .notes-hint { font-size:0.5em; color:#94a3b8; font-style:italic; margin-top:30px }
+    .reveal .mermaid { font-size:0.65em }
+    .reveal .mermaid svg { max-height:420px }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section class="center">
+  <h1>Lighthouse</h1>
+  <h3>AI-Powered O-1 Visa Onboarding</h3>
+  <p class="small" style="margin-top:40px">An agentic prototype that replaces static forms with guided, AI-coached evidence collection</p>
+  <p class="notes-hint">Press S for speaker notes | Arrow keys to navigate</p>
+  <aside class="notes">Welcome. Lighthouse is our answer to a core problem in immigration onboarding: applicants don't understand what good evidence looks like, and the current process of emails, spreadsheets, and phone calls doesn't scale.</aside>
+</section>
+
+<section>
+  <h2>The Problem</h2>
+  <div class="two-col">
+    <div>
+      <h3>O-1 Visa Onboarding Today</h3>
+      <ul>
+        <li>8 possible USCIS criteria, dozens of evidence fields</li>
+        <li>Long text blocks + emails/calls &mdash; <strong>users don't read them</strong></li>
+        <li>No feedback until <em>after</em> submission</li>
+        <li><span class="warn">3-4 revision cycles</span> per criterion on average</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Why It Matters Now</h3>
+      <ul>
+        <li>H-1B fee tripling to $100K &rarr; explosive O-1 demand</li>
+        <li>94% O-1A approval rate, but evidence assembly is the bottleneck</li>
+        <li>Manual intake doesn't scale with growing caseloads</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">The core pain: applicants are high-achieving but immigration-naive. They receive a spreadsheet, spend weeks gathering evidence without knowing if it's sufficient, submit, get rejected, and repeat 3-4 times per criterion.</aside>
+</section>
+
+<section class="center">
+  <h2>The Key Insight</h2>
+  <p style="font-size:1.3em; margin:40px 0">Assess evidence quality <span class="highlight">during</span> collection, not after.</p>
+  <div class="mermaid">
+graph LR
+  A["Applicant writes evidence"] --> B{"When evaluated?"}
+  B -->|"After submission"| C["3-4 revision cycles"]
+  B -->|"During collection"| D["Real-time coaching"]
+  style C fill:#fecaca,stroke:#dc2626,color:#991b1b
+  style D fill:#dcfce7,stroke:#16a34a,color:#166534
+  </div>
+  <aside class="notes">This is the single most important design decision. Every other tool evaluates evidence after the fact. We evaluate it inline — applicants improve in real-time instead of waiting days for feedback.</aside>
+</section>
+
+<section>
+  <h2>Solution: Three AI Capabilities</h2>
+  <div style="display:flex; gap:20px; margin-top:20px">
+    <div class="arch-box" style="border-left:4px solid #2563eb">
+      <h3 style="margin:0 0 8px">Evidence Grading</h3>
+      <p>LLM scores each field against USCIS standards with structured verdicts</p>
+      <span class="pill pill-green">sufficient</span>
+      <span class="pill pill-yellow">needs improvement</span>
+      <span class="pill pill-red">insufficient</span>
+    </div>
+    <div class="arch-box" style="border-left:4px solid #8b5cf6">
+      <h3 style="margin:0 0 8px">AI Copilot</h3>
+      <p>Context-aware chat that knows your current criterion and coaches you through it</p>
+      <span class="pill pill-blue">streaming</span>
+      <span class="pill pill-blue">per-criterion prompts</span>
+    </div>
+    <div class="arch-box" style="border-left:4px solid #f59e0b">
+      <h3 style="margin:0 0 8px">Autonomous Outreach</h3>
+      <p>Auto-generated follow-up actions: reminders for weak criteria, approvals for strong</p>
+      <span class="pill pill-yellow">reminder</span>
+      <span class="pill pill-green">approval</span>
+      <span class="pill pill-blue">schedule call</span>
+    </div>
+  </div>
+  <aside class="notes">Three AI modules working together. Evidence grading is the core — real-time scoring using GPT-4o-mini with Pydantic structured output. The copilot provides criterion-specific coaching. Outreach automates follow-up actions a case manager would normally handle manually.</aside>
+</section>
+
+<section>
+  <h2>Adaptive Wizard Flow</h2>
+  <div class="mermaid">
+graph LR
+  O["Overview"] --> D["Demographics"]
+  D --> C1["Criterion 1"]
+  C1 --> C2["Criterion 2"]
+  C2 --> CN["... Criterion N"]
+  CN --> R["AI Review"]
+  R --> RES["Results + Outreach"]
+  RES -.->|"Improve"| C1
+  style O fill:#dbeafe,stroke:#3b82f6
+  style D fill:#dbeafe,stroke:#3b82f6
+  style C1 fill:#e0e7ff,stroke:#6366f1
+  style C2 fill:#e0e7ff,stroke:#6366f1
+  style CN fill:#e0e7ff,stroke:#6366f1
+  style R fill:#fef9c3,stroke:#eab308
+  style RES fill:#dcfce7,stroke:#16a34a
+  </div>
+  <table style="margin-top:15px">
+    <tr><th>Design Choice</th><th>What</th><th>Why</th></tr>
+    <tr><td>Data-driven rendering</td><td>Wizard sections from JSON case strategy</td><td>Any criteria combination, no hardcoded views</td></tr>
+    <tr><td>Progressive disclosure</td><td>Criterion intro &rarr; fields (2-step)</td><td>Educates before collecting</td></tr>
+    <tr><td>Dynamic field types</td><td>text, date, file, URL, files_or_urls</td><td>Matches test data spec; extensible</td></tr>
+    <tr><td>Floating copilot</td><td>Chat panel at any wizard step</td><td>"Users should be able to ask questions at any point"</td></tr>
+  </table>
+  <aside class="notes">The wizard is fully data-driven. Load a different case strategy JSON and the entire UX adapts. Each criterion has a two-step flow: intro then fields. The floating AI copilot is always available.</aside>
+</section>
+
+<section>
+  <h2>AI Pipeline Architecture</h2>
+  <div class="two-col">
+    <div class="mermaid" style="flex:1.3">
+flowchart TD
+  A["User submits evidence"] --> B["LangGraph StateGraph"]
+  B --> C{"API key?"}
+  C -->|Yes| D["GPT-4o-mini Structured Output"]
+  C -->|No| E["Mock Grader"]
+  D --> F["EvidenceGrade schema"]
+  E --> F
+  F --> G["Outreach Engine"]
+  G --> H["Reminder"]
+  G --> I["Approval"]
+  G --> J["Schedule"]
+  style B fill:#dbeafe,stroke:#3b82f6
+  style D fill:#e0e7ff,stroke:#6366f1
+  style E fill:#fef9c3,stroke:#eab308
+  style F fill:#f3e8ff,stroke:#8b5cf6
+  style G fill:#fed7aa,stroke:#f59e0b
+  style H fill:#fecaca,stroke:#ef4444
+  style I fill:#dcfce7,stroke:#16a34a
+  style J fill:#dbeafe,stroke:#3b82f6
+    </div>
+    <div style="flex:0.7">
+      <div class="arch-box">
+        <h3 style="margin:0 0 8px">Pydantic Schema</h3>
+<pre style="font-size:1em; margin:0"><code>EvidenceGrade {
+  verdict: str
+  score: float (0-1)
+  feedback: str
+  suggestions: list[str]
+}</code></pre>
+      </div>
+      <div class="arch-box" style="margin-top:10px">
+        <h3 style="margin:0 0 8px">Why Structured Output?</h3>
+        <p>Guarantees verdict is one of 3 values, score is 0-1 float. No regex parsing. Downstream UI + outreach depend on clean data.</p>
+      </div>
+      <div class="arch-box" style="margin-top:10px">
+        <h3 style="margin:0 0 8px">Why Mock Mode?</h3>
+        <p>Full demo without API costs. Length heuristic: &gt;200 chars = sufficient, &gt;50 = needs improvement.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">LangGraph with a single node and Pydantic structured output. The LLM returns a typed schema — no free-form text to parse. Mock mode uses text length as a grading heuristic. Why LangGraph for one node? Adding document parsing or salary benchmarking is just a new node.</aside>
+</section>
+
+<section>
+  <h2>AI Copilot: Context-Aware Coaching</h2>
+  <div class="two-col">
+    <div>
+      <div class="mermaid">
+flowchart TD
+  A["Navigate to criterion"] --> B["System prompt injected"]
+  B --> C["Suggested prompts loaded"]
+  A --> D["User asks question"]
+  D --> E{"API key?"}
+  E -->|Yes| F["LangChain streaming"]
+  E -->|No| G["Mock response"]
+  F --> H["Tokens via WebSocket"]
+  G --> H
+  style B fill:#f3e8ff,stroke:#8b5cf6
+  style C fill:#f3e8ff,stroke:#8b5cf6
+  style F fill:#e0e7ff,stroke:#6366f1
+  style G fill:#fef9c3,stroke:#eab308
+  style H fill:#dcfce7,stroke:#16a34a
+      </div>
+    </div>
+    <div>
+      <div class="arch-box">
+        <h3 style="margin:0 0 8px">Example: Critical Role</h3>
+        <p style="font-size:0.85em; color:#555; font-style:italic">Suggested prompts:</p>
+        <ul style="font-size:0.85em">
+          <li>"What counts as a 'critical role'?"</li>
+          <li>"How do I describe key responsibilities effectively?"</li>
+          <li>"What supporting documents strengthen this criterion?"</li>
+        </ul>
+        <p style="font-size:0.8em; margin-top:10px">Prompts change automatically as user navigates between criteria</p>
+      </div>
+      <div class="arch-box" style="margin-top:10px">
+        <h3 style="margin:0 0 8px">Key Design</h3>
+        <ul style="font-size:0.85em">
+          <li><strong>Not a generic chatbot</strong> &mdash; context-injected per criterion</li>
+          <li>Fulfills: "ask questions at any point"</li>
+          <li>Right-side panel, non-blocking</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">The copilot knows exactly which criterion the user is on and adjusts its system prompt and suggested questions accordingly. Switch criteria and everything updates.</aside>
+</section>
+
+<section>
+  <h2>Handling Pushback &amp; Autonomous Outreach</h2>
+  <div class="two-col">
+    <div>
+      <h3>Evidence Pushback Flow</h3>
+      <div class="mermaid">
+flowchart TD
+  A["AI Review completes"] --> B{"Verdict?"}
+  B -->|sufficient| C["Approval"]
+  B -->|needs_improvement| D["Suggestions"]
+  B -->|insufficient| E["Detailed feedback"]
+  D --> F["Improve Evidence"]
+  E --> F
+  F --> G["Jump to criterion"]
+  G --> A
+  style C fill:#dcfce7,stroke:#16a34a
+  style D fill:#fef9c3,stroke:#eab308
+  style E fill:#fecaca,stroke:#ef4444
+  style F fill:#dbeafe,stroke:#3b82f6
+      </div>
+    </div>
+    <div>
+      <h3>Autonomous Actions</h3>
+      <div class="arch-box">
+        <p><strong>Immediate after review:</strong></p>
+        <ul style="font-size:0.85em">
+          <li><span class="pill pill-red" style="font-size:0.8em">reminder</span> emails for weak criteria</li>
+          <li><span class="pill pill-green" style="font-size:0.8em">approval</span> notifications for strong</li>
+        </ul>
+        <p style="margin-top:10px"><strong>After 24h (simulated):</strong></p>
+        <ul style="font-size:0.85em">
+          <li>Send pending reminders</li>
+          <li><span class="pill pill-blue" style="font-size:0.8em">schedule</span> review call suggestion</li>
+        </ul>
+        <p style="margin-top:10px; font-size:0.8em; color:#555">Rule-based, no LLM &mdash; verdicts encode all needed info.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">Bonus requirement: handling pushback. Our system does this automatically. Weak criteria trigger reminders, users can jump back to improve fields without losing prior work. The outreach engine is rule-based — verdicts contain all needed information.</aside>
+</section>
+
+<section>
+  <h2>Real-Time User Experience</h2>
+  <div class="mermaid">
+sequenceDiagram
+  participant U as User
+  participant FE as Frontend (Reflex)
+  participant BE as Backend
+  participant AI as GPT-4o-mini
+  U->>FE: Submit all criteria
+  FE->>BE: run_evidence_review()
+  Note over BE: is_reviewing = true
+  loop Each text field
+    BE->>AI: grade_evidence(field)
+    AI-->>BE: EvidenceGrade
+    BE->>FE: update progress
+    FE->>U: "3 of 10 fields reviewed"
+  end
+  BE->>FE: reviewed + outreach
+  FE->>U: Results dashboard
+  </div>
+  <div class="arch-box" style="margin-top:10px">
+    <strong>Key pattern:</strong> <code>@rx.event(background=True)</code> with <code>async with self</code> for thread-safe progressive UI updates. LLM calls via <code>asyncio.to_thread()</code>.
+  </div>
+  <aside class="notes">Everything is real-time. Review progress updates field by field via WebSocket. The background task pattern uses "async with self" as a state lock for thread-safe updates.</aside>
+</section>
+
+<section class="center">
+  <h2>Live Demo</h2>
+  <p style="font-size:1.1em; margin:30px 0"><a href="http://localhost:3001" target="_blank">http://localhost:3001</a></p>
+  <div style="text-align:left; max-width:600px; margin:0 auto">
+    <h3>Demo Script</h3>
+    <ol class="medium">
+      <li><strong>Overview</strong> &mdash; Case strategy, time estimate</li>
+      <li><strong>Demographics</strong> &mdash; Fill basic info</li>
+      <li><strong>Critical Role</strong> &mdash; Intro, fill fields, open copilot</li>
+      <li><strong>AI Copilot</strong> &mdash; Ask "What counts as a critical role?"</li>
+      <li><strong>Complete criteria</strong> &mdash; Fill remaining sections</li>
+      <li><strong>AI Review</strong> &mdash; Live "X of Y fields reviewed"</li>
+      <li><strong>Results</strong> &mdash; Score breakdown, per-criterion verdicts</li>
+      <li><strong>Outreach</strong> &mdash; Auto-generated emails, "Simulate 24h"</li>
+    </ol>
+  </div>
+  <aside class="notes">Walk through the full flow. Demo mode uses simulated grading — with a real API key, GPT-4o-mini does actual evidence assessment.</aside>
+</section>
+
+<section>
+  <h2>Requirements Coverage</h2>
+  <table>
+    <tr><th>Requirement</th><th>Implementation</th><th></th></tr>
+    <tr><td>Work for any O-1 case strategy</td><td>Data-driven wizard from JSON</td><td><span class="ok">&#10003;</span></td></tr>
+    <tr><td>Validate inputs dynamically</td><td>Real LLM grading with structured output</td><td><span class="ok">&#10003;</span></td></tr>
+    <tr><td>Support clarifying questions</td><td>AI copilot at every wizard step</td><td><span class="ok">&#10003;</span></td></tr>
+    <tr><td>Collect all data points</td><td>text, date, file, URL, files_or_urls</td><td><span class="ok">&#10003;</span></td></tr>
+    <tr><td><em>Bonus:</em> Adapt to profiles</td><td>JSON-driven criteria, swap strategy</td><td><span class="ok">&#10003;</span></td></tr>
+    <tr><td><em>Bonus:</em> Handle pushback</td><td>Verdict rejection + re-entry flow</td><td><span class="ok">&#10003;</span></td></tr>
+  </table>
+  <aside class="notes">All four core requirements met, plus both bonus points. The key enabler is the JSON-driven wizard — it renders whatever criteria structure you give it.</aside>
+</section>
+
+<section>
+  <h2>Assumptions &amp; Tradeoffs</h2>
+  <div class="two-col">
+    <div>
+      <h3>Assumptions Made</h3>
+      <ul>
+        <li>Case strategy JSON: <code>{criteria: [{name, description, fields}]}</code></li>
+        <li>AI grading is coaching, not legal decision-making</li>
+        <li>Text evidence is primary review target (files stored, not parsed)</li>
+        <li>Single-user prototype (no auth, no persistence)</li>
+        <li>Mock mode acceptable for API-key-free demos</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What I'd Do Differently</h3>
+      <ul>
+        <li><strong>Document parsing</strong> &mdash; vision LLM for PDF/image evidence</li>
+        <li><strong>Persistent storage</strong> &mdash; DB-backed case data</li>
+        <li><strong>Multi-node pipeline</strong> &mdash; parsing, grading, fact-checking</li>
+        <li><strong>Attorney dashboard</strong> &mdash; case manager oversight</li>
+        <li><strong>Salary benchmarking</strong> &mdash; DOL prevailing wage API</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">Biggest assumption: text evidence is what we grade, files stored but not analyzed. Document parsing via vision LLM is the natural next step — just add a LangGraph node.</aside>
+</section>
+
+<section>
+  <h2>Tech Stack</h2>
+  <div class="two-col">
+    <div>
+      <table>
+        <tr><th>Layer</th><th>Technology</th><th>Role</th></tr>
+        <tr><td>Framework</td><td>Reflex 0.8.27</td><td>Python full-stack + WebSocket</td></tr>
+        <tr><td>AI</td><td>LangGraph</td><td>Evidence review pipeline</td></tr>
+        <tr><td>LLM</td><td>GPT-4o-mini</td><td>Grading + copilot</td></tr>
+        <tr><td>Schema</td><td>Pydantic</td><td>Structured output</td></tr>
+        <tr><td>Integration</td><td>LangChain</td><td>Streaming + abstraction</td></tr>
+        <tr><td>Deploy</td><td>Docker</td><td>Single container</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="mermaid">
+pie title Code (~2,000 LOC)
+  "State + Handlers" : 580
+  "Wizard UI" : 740
+  "AI Pipeline" : 410
+  "Chat + Layout" : 190
+  "Config + Data" : 80
+      </div>
+    </div>
+  </div>
+  <p class="medium" style="margin-top:15px"><strong>~2,000 lines</strong> of Python — single language across frontend, backend, and AI pipeline.</p>
+  <aside class="notes">About 2,000 lines of Python total. No JavaScript, no separate API server. Reflex compiles Python UI into React and syncs state over WebSocket.</aside>
+</section>
+
+<section class="center">
+  <h2>Thank You</h2>
+  <p style="font-size:1.1em; margin:30px 0">Lighthouse turns overwhelming immigration paperwork<br>into a guided, AI-coached experience.</p>
+  <aside class="notes">The core hypothesis: real-time AI coaching during evidence collection reduces revision cycles from 3-4 to near-zero. The architecture is extensible to document parsing, salary benchmarking, and multi-visa support.</aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  securityLevel: 'loose',
+  fontFamily: 'system-ui, -apple-system, sans-serif',
+  themeVariables: {
+    primaryColor: '#dbeafe',
+    primaryTextColor: '#1e40af',
+    primaryBorderColor: '#93c5fd',
+    lineColor: '#64748b',
+    fontSize: '14px'
+  }
+});
+async function renderMermaid() {
+  const els = document.querySelectorAll('.mermaid');
+  for (let i = 0; i < els.length; i++) {
+    try {
+      const { svg } = await mermaid.render('m'+i, els[i].textContent.trim());
+      els[i].innerHTML = svg;
+    } catch(e) { console.error(e) }
+  }
+}
+renderMermaid().then(() => {
+  Reveal.initialize({
+    hash: true, slideNumber: true,
+    plugins: [RevealNotes],
+    width: 1200, height: 700, margin: 0.08, transition: 'slide'
+  });
+});
+</script>
+</body>
+</html>
