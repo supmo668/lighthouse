@@ -1,0 +1,14 @@
+# Core framework
+reflex==0.8.27
+
+# Environment
+python-dotenv>=1.0.0
+
+# LLM providers
+langchain-core>=0.3.0
+langchain-openai>=0.3.0
+langchain-anthropic>=0.3.0
+langgraph>=0.3.0
+
+# Production server
+gunicorn>=21.2.0

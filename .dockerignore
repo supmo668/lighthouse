@@ -1,0 +1,10 @@
+.web/
+__pycache__/
+*.pyc
+.git/
+.env
+.claude/
+venv/
+.venv/
+uploaded_files/
+*.db
