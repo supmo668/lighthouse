@@ -2,7 +2,7 @@
 
 AI-powered O-1 visa onboarding prototype. Replaces static forms with a guided wizard that grades evidence in real-time, coaches applicants via AI copilot, and auto-generates follow-up actions.
 
-**Live Presentation**: [lighthouse-presentation-4nf2izpxi-supermomo668s-projects.vercel.app](https://lighthouse-presentation-4nf2izpxi-supermomo668s-projects.vercel.app)
+**Live Presentation**: [lighthouse-presentation.vercel.app](https://lighthouse-presentation.vercel.app)
 
 ## Quick Start
 
@@ -79,5 +79,5 @@ docker run -p 3000:3000 -p 8000:8000 -e OPENAI_API_KEY=sk-... lighthouse
 | Deliverable | Link |
 |-------------|------|
 | Source Code | [github.com/supmo668/playground](https://github.com/supmo668/playground/tree/feature/llm-eval-pipeline/lighthouse) |
-| Presentation | [Vercel](https://lighthouse-presentation-4nf2izpxi-supermomo668s-projects.vercel.app) |
+| Presentation | [Vercel](https://lighthouse-presentation.vercel.app) |
 | Walkthrough Script | [presentation/WALKTHROUGH_SCRIPT.md](presentation/WALKTHROUGH_SCRIPT.md) |
