@@ -20,5 +20,8 @@ venv/
 .vscode/
 .idea/
 
+# Presentation (local only)
+presentation/
+
 # OS
 .DS_Store
