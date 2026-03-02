@@ -6,6 +6,10 @@ on:
     paths:
       - 'presentation/**'
 
+env:
+  VERCEL_ORG_ID: team_VTmNF2vSNvR3cLdedilRZLRG
+  VERCEL_PROJECT_ID: prj_3rHdciwyFhlEhp2DHt1eLLmzMGsz
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
